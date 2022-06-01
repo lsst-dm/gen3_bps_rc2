@@ -1,10 +1,10 @@
 ##############
-#BPS OPERATOR
+# BPS OPERATOR
 ##############
 
 pipelineYaml: "$DRP_PIPE_DIR/pipelines/HSC/DRP-RC2.yaml#step7"
 
-bpsUsedShared: True
+bpsUsedShared: true
 
 campaign: "G3WNUMBER"
 computeSite: ncsapool
@@ -18,19 +18,13 @@ payload:
   output: "HSC/runs/RC2/w_WEEKLY/DM-TICKETNUM"
   dataQuery: "instrument='HSC'"
 
-#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {inCollection}  --output {output} --output-run {outCollection}  -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot
-
 extraInitOptions: --no-versions
 extraRunQuantumOptions: --no-versions
 
 pipetask:
-
   assembleCoadd:
     requestMemory: 8192
- # makeWarp:
- #   requestMemory: 85000
   jointcal:
     requestMemory: 21000
   deblend:
     requestMemory: 15500
-

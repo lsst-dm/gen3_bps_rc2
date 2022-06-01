@@ -1,10 +1,10 @@
 ##############
-#BPS OPERATOR
+# BPS OPERATOR
 ##############
 
 pipelineYaml: "$DRP_PIPE_DIR/pipelines/HSC/DRP-RC2.yaml#step1"
 
-bpsUseShared: True
+bpsUseShared: true
 
 campaign: "G3WNUMBER"
 computeSite: ncsapool
@@ -18,13 +18,10 @@ payload:
   output: "HSC/runs/RC2/w_WEEKLY/DM-TICKETNUM"
   dataQuery: ""
 
-#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {inCollection} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot
-
 extraRunQuantumOptions: --no-versions
 extraInitOptions: --no-versions
 
 pipetask:
-
   skyCorr:
     requestMemory: 11500
   fgcmBuildStarsTable:
@@ -32,4 +29,4 @@ pipetask:
   fgcmFitCycle:
     requestMemory: 24576
   fgcmOutputProducts:
-    requestMemory: 8192 
+    requestMemory: 8192
