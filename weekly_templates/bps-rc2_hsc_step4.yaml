@@ -1,0 +1,36 @@
+##############
+#BPS OPERATOR
+##############
+
+pipelineYaml: "$DRP_PIPE_DIR/pipelines/HSC/DRP-RC2.yaml#step4"
+
+bpsUseShared: True
+
+campaign: "G3WNUMBER"
+computeSite: ncsapool
+requestMemory: 2048
+requestCpus: 1
+
+payload:
+  payloadName: rc2
+  butlerConfig: /repo/main/butler.yaml
+  inCollection: HSC/RC2/defaults
+  output: "HSC/runs/RC2/w_WEEKLY/DM-TICKETNUM"
+  dataQuery: ""
+#  dataQuery: "instrument='HSC' and skymap='hsc_rings_v1' and detector!=9 and detector.purpose='SCIENCE'"
+
+#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {inCollection}  --output {output} --output-run {outCollection}  -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot
+
+extraInitOptions: --no-versions
+extraRunQuantumOptions: --no-versions
+
+pipetask:
+
+  assembleCoadd:
+    requestMemory: 8192
+ # makeWarp:
+ #   requestMemory: 85000
+  jointcal:
+    requestMemory: 21000
+  deblend:
+    requestMemory: 15500
