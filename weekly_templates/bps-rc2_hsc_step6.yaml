@@ -1,0 +1,30 @@
+##############
+# BPS OPERATOR
+##############
+
+pipelineYaml: "$DRP_PIPE_DIR/pipelines/HSC/DRP-RC2.yaml#step6"
+
+bpsUsedShared: true
+
+campaign: "G3WNUMBER"
+computeSite: ncsapool
+requestMemory: 2048
+requestCpus: 1
+
+payload:
+  payloadName: rc2
+  butlerConfig: /repo/main/butler.yaml
+  inCollection: HSC/RC2/defaults
+  output: "HSC/runs/RC2/w_WEEKLY/DM-TICKETNUM"
+  dataQuery: ""
+
+extraInitOptions: --no-versions
+extraRunQuantumOptions: --no-versions
+
+pipetask:
+  assembleCoadd:
+    requestMemory: 8192
+  jointcal:
+    requestMemory: 21000
+  deblend:
+    requestMemory: 15500
